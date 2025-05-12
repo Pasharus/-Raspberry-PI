@@ -1,0 +1,29 @@
+#include <GyverBME280.h>
+GyverBME280 bme;
+
+void setup() {
+  Serial.begin(9600);
+  
+  if (!bme.begin(0x76)) {   //Если выдаёт ошибку попробуйте поменять 0x76 на 0x77
+    Serial.println("Error!");
+    while (1);
+  }
+}
+
+void loop() {
+  float temperature = bme.readTemperature();
+  float humidity = bme.readHumidity();
+  float pressure = bme.readPressure();
+
+  int mq2Value = analogRead(A0); 
+
+  Serial.print(" Температура: ");
+  Serial.print(temperature);
+  Serial.print(" Влажность: ");
+  Serial.print(humidity);
+  Serial.print(" Давление: ");
+  Serial.print(pressure);
+  Serial.print(" Mq2: ");
+  Serial.println(mq2Value); 
+  delay(1000); 
+}
