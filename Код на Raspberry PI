@@ -1,0 +1,41 @@
+import serial
+import time
+import tkinter as tk
+from tkinter import scrolledtext
+
+port = 'порт' //укажите порт ардуино
+baud_rate = 9600
+
+root = tk.Tk()
+root.title("Данные с сенсоров")
+root.configure(bg='white')
+
+text_area = scrolledtext.ScrolledText(root, wrap=tk.WORD, bg='white', fg='black', font=("Arial", 12), height=1)
+text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+
+ser = serial.Serial(port, baud_rate)
+time.sleep(2)
+
+def read_serial():
+    try:
+        if ser.in_waiting > 0:
+            line = ser.readline().decode('utf-8').rstrip()
+            print(f"Полученные данные: {line}")
+            text_area.delete(1.0, tk.END)
+            text_area.insert(tk.END, line + '\n')
+            text_area.see(tk.END)
+    except Exception as e:
+        print(f"Ошибка: {e}")
+
+
+    root.after(100, read_serial)
+
+read_serial()
+
+def on_closing():
+    ser.close()
+    root.destroy()
+
+root.protocol("WM_DELETE_WINDOW", on_closing)
+
+root.mainloop()
