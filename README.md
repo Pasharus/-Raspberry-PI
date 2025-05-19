@@ -4,11 +4,11 @@
 
 Схема подключения представленна ниже, а также на снимке под названием "Схема подключения.png":
 Подключение MQ-2:
-VCC - 5V
-GND - GND
-AOUT - A0
+VCC - 5V,
+GND - GND,
+AOUT - A0,
 Подключение BME280:
-VIN - 5V
-GND - GND
-SCL - A5
-SDA - A4
+VIN - 5V,
+GND - GND,
+SCL - A5,
+SDA - A4.
