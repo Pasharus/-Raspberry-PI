@@ -3,7 +3,7 @@ import time
 import tkinter as tk
 from tkinter import scrolledtext
 
-port = 'порт' //укажите порт ардуино
+port = 'порт' #укажите порт ардуино
 baud_rate = 9600
 
 root = tk.Tk()
